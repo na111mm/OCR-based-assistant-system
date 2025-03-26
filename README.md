@@ -14,19 +14,19 @@
    5.2.2 Historical strategies and orders viewing and sharing and other's sharing viewing
 6. Tech Stack
 --------------------------------------------------------------------------------------------------
-1. Core Features
+1. Core Features  
 The system is designed for bulk character recognition, dynamically adapting its recognition strategy to accurately identify desired characters in images.
 
-2. Benefits
+2. Benefits  
 The system employs multiple strategies, allowing it to handle a wider range of character recognition scenarios compared to using a single approach.
 
-3. UI Showcase
+3. UI Showcase  
 View attached documents.
 
-4. Example Use Cases
+4. Example Use Cases  
 View attached documents.
 
-5. User Guide
+5. User Guide  
 
 5.1 ‘Home’ page
 
@@ -64,7 +64,7 @@ View attached documents.
 5.2.2 Historical strategies and orders viewing and sharing and other's sharing viewing
 1. Click ‘Historical Orders’ to display all the orders of the account, and click one of the orders to display the specific information of the order.
 2. Click ‘Historical Strategies’ to display all the strategies of the account, and click one of the strategies to display the specific information of the strategy.
-3. Click ‘Share Orders and Strategies’ to display several random shares from other people, click ‘Share’ button, choose to share strategies or share orders, display all strategies or display all orders, select a strategy or order to share, or click a strategy or order and then share the strategy or order, click one of the strategies to display the specific information of the strategies, or click one of the orders to display the specific information of the order, enter the characters in the search box, and select Search User, Search Strategy Name, Search Order Name, or Search Publishing Time, it will display all the strategies and orders shared by others in the search, and click one of the strategies or orders to view the specific information of the strategy or order.
+3. Click ‘Share Orders and Strategies’ to display several random shares from other people, click ‘Share’ button, choose to share strategies or share orders, display all strategies or display all orders, select a strategy or order to share, or click a strategy or order and then share the strategy or order, click one of the strategies to display the specific information of the strategies, or click one of the orders to display the specific information of the order, enter the characters in the search box, and select Search User, Search Strategy Name, Search Order Name, or Search Publishing Time, it will display all the strategies and orders shared by others in the search, and click one of the strategies or orders to view the specific information of the strategy or order.  
 
-6. Tech Stack
+6. Tech Stack  
 Use WXML, WXSS, JavaScript(a specific HTML, CSS frame, and a specific JavaScript) to render the front-end, use Python to calculate, use Flask for messaging front-end and back-end, use MySQL to store and query data, use open-source technology OCR to recognise characters.
