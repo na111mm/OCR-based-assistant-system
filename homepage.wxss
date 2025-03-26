@@ -1,0 +1,107 @@
+[class*=animation-] {
+  animation-duration: .5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both
+}
+
+.canvas_1{ background-color: #fff;}
+
+.ocr_title{ font-size: 35rpx; color: rgb(80, 79, 79);}
+
+.row_line_btn{ font-size: 28rpx;}
+
+.change_font_btn{ font-size: 28rpx;}
+
+.cardoff_font{ font-size: 26rpx;}
+
+.preview-btn{ height: 50rpx; width: 107rpx; color: darkgrey;}
+.upload-btn{ height: 50rpx; width: 107rpx; background-color: darkblue; color: darkgrey;}
+.save-btn{ height: 49rpx; width: 105rpx; color: rgb(241, 240, 240);}
+.download-btn{ height: 49rpx; width: 205rpx;  color: darkgrey;}
+
+
+.strategy_btn{ height: 52rpx; width: 105rpx; background-color: rgb(119, 179, 159); color: rgb(241, 240, 240);}
+
+.start-btn{ height: 56rpx; width: 155rpx;}
+
+.test-btn{ height: 56rpx; width: 100rpx;}
+
+.addcard_icon{ background-color: rgb(243, 240, 240); height: 80rpx;}
+
+.x_axis{ width: 200rpx;}
+
+.space_3{ color: rgb(243, 240, 240);}
+.space_2{ color: rgb(255, 253, 253);}
+.space_1{ width: 30rpx;}
+
+.interval{ width: 320rpx; height: 100rpx;}
+.interval_2{ width: 320rpx; height: 60rpx;}
+.interval_img{ width: 320rpx; height: 35rpx;}
+.interval-strategy{ width: 320rpx; height: 17rpx;}
+
+
+.font_1{ font-size: 35rpx; font-weight: bold}
+.font_2{ font-size: 30rpx; font-weight: bold}
+.font_3{ font-size: 31rpx; color: yellowgreen;}
+.font_4{ font-size: 35rpx; color: darkolivegreen; font-weight: bold}
+.font_5{ font-size: 30rpx;}
+.font_6{ font-size: 26rpx; color: rgb(206, 240, 235);}
+.font_7{ font-size: 26rpx; color: rgb(207, 206, 206);}
+.font_8{ font-size: 26rpx; color: darkgray;}
+.font_9{ font-size: 35rpx;}
+
+
+.row_line_1{ font-size: 30rpx; color: gold; font-weight: bold}
+
+.change_font_1{ display: flex; flex-flow: row nowrap; justify-content: space-between;}
+.change_font_module{ width: 160rpx; height: 63rpx; border-radius: 40rpx; 
+                    display: flex; align-items: center; justify-content: center; font-weight: bold;}
+
+.change_font_form{ border-bottom: 1px solid darkgray; padding: 0%;}
+
+
+.delfont_1{ font-size: 27rpx; font-weight: bold}
+
+.addfont_1{ font-size: 27rpx; font-weight: bold; width: 100rpx;}
+
+.del_picker{ text-align: center;}
+
+
+.strategy_1{ background-color: #F8F8F8;}
+
+.strategy_title{ height: 50rpx;}
+
+
+
+
+.switch-loc::after { content: "%"; background-color: darkgreen;}
+.switch-loc::before { content: "rpx"; background-color: rgb(75, 163, 75);}
+
+.switch-front_behind::after { content: "前";}
+.switch-front_behind::before { content: "后";}
+
+.switch-row::after { content: "关"; background-color: #8ab7d1;}
+.switch-row::before { content: "开"; background-color: #8f95cf;}
+
+.switch-line::after { content: "关"; background-color: #8ab7d1;}
+.switch-line::before { content: "开"; background-color: #8f95cf;}
+
+
+.animation-shake {
+  animation-name: shake
+}
+
+@keyframes shake {
+  0%,
+  100% { transform: translateX(0)}
+  10% { transform: translateX(-9px)}
+  20% { transform: translateX(8px)}
+  30% { transform: translateX(-7px)}
+  40% { transform: translateX(6px)}
+  50% { transform: translateX(-5px)}
+  60% { transform: translateX(4px)}
+  70% { transform: translateX(-3px)}
+  80% { transform: translateX(2px)}
+  90% { transform: translateX(-1px)}
+}
+

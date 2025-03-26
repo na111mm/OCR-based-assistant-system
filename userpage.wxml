@@ -1,0 +1,39 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">OCR助手系统</view>
+</cu-custom>
+
+
+<view class="interval"></view>
+<view class="interval"></view>
+
+
+<view class="flex justify-center" >
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" 
+          class="login-btn cu-btn line-olive round" bindtap="hehe" hover-class="animation-shake"> 
+    <view class="font_1">登录</view>
+  </button>
+    
+  <block wx:else hidden="{{user_login!=1}}">
+    <view class='text-center'>
+      <view style="height: 73px; width: 73px; justify-content: center;">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <open-data type="userNickName"></open-data>
+    </view>
+  </block>
+</view>
+
+
+
+<view class="interval"></view>
+<view class="interval"></view>
+
+<view class="cu-form-group" bindtap="Showorder">历史订单</view>
+<view class="cu-form-group" bindtap="Showmethod">历史策略组</view>
+<view class="cu-form-group" bindtap="Showreco">分享订单和策略组</view>
+<view class="cu-form-group" bindtap="showSettings">设置</view>
+<view class="cu-form-group" bindtap="showModal5">关于</view>
+
+
+
+

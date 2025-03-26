@@ -1,0 +1,494 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content" class="ocr_title">OCR助手系统</view>
+</cu-custom>
+<view class="interval_img"></view>
+<text class="space_3 cuIcon-cameraadd" space="emsp">  ddd             </text>
+<text bindtap="Guide" space="emsp"> ！</text>
+<view class="cu-bar bg-white margin-top">
+	<view class="action">示例图片上传</view>
+	<view class="action">{{examplePicture.length}}/1</view>
+</view>
+<view class="cu-form-group">
+	<view class="grid col-4 grid-square flex-sub">
+		<view class="bg-img" wx:for="{{examplePicture}}" wx:key="{{index}}" 
+          bindtap="ViewExamplePicture" data-url="{{examplePicture[index]}}">
+			<image src='{{examplePicture[index]}}' mode='aspectFill'></image>
+			<view class="cu-tag bg-red" catchtap="Del_examplePicture" data-index="{{index}}">
+				<text class="cuIcon-close"></text>
+			</view>
+		</view>
+		<view class="solids" bindtap="Choose_examplePicture">
+			<text class="cuIcon-cameraadd"></text>
+		</view>
+	</view>
+</view>
+<view class="addcard_icon cu-form-group">
+  <text class="space_3" space="emsp" >       ddd  </text>
+  <text class="space_3" space="emsp" >       ddd  </text>
+  <button class="preview-btn shadow" bindtap="Preview" hover-class="animation-shake">
+    <view class="font_7">预览</view>
+  </button>
+</view>
+<view class="cu-bar bg-white margin-top">
+	<view class="action">图片上传</view>
+	<view class="action">{{pic.length}}/100</view>
+</view>
+<view class="cu-form-group" hidden="{{picmodule!=1}}">
+	<view class="grid col-4 grid-square flex-sub">
+		<view class="bg-img" wx:for="{{pic}}" wx:key="{{index}}" bindtap="View_pic" data-url="{{pic[index]}}">
+			<image src='{{pic[index]}}' mode='aspectFill'></image>
+			<view class="cu-tag bg-red" catchtap="Del_pic" data-index="{{index}}">
+				<text class="cuIcon-close"></text>
+			</view>
+		</view>
+		<view class="solids" bindtap="Choose_pic" wx:if="{{pic.length < 100}}">
+			<text class="cuIcon-cameraadd"></text>
+		</view>
+	</view>
+</view>
+<view class="addcard_icon cu-form-group">
+  <text class="space_3" space="emsp" >           ddd </text>
+  <button class="preview-btn shadow" bindtap="Upload_pic" hover-class="animation-shake">
+    <view class="font_7">上传</view>
+  </button>
+  <text class="space_3" space="emsp" >d</text>
+  <button class="preview-btn shadow" bindtap="Hide_pic" hover-class="animation-shake">
+    <view class="font_7">隐藏</view>
+  </button>
+</view>
+<view class="addcard_icon cu-form-group">
+  <text class="cuIcon-add text-gray" bindtap="Addcard"></text>
+</view>
+<view>
+  <button class="download-btn shadow" bindtap="Download_strategy" hover-class="animation-shake">
+    <view class="font_7">使用历史策略</view>
+  </button>
+</view>
+<view class="cu-card">
+  <view class="cu-item shadow">
+    <view wx:for="{{card}}" wx:for-index="indexcard" >
+      <view class="cu-form-group solid-bottem">
+        <view>策略：{{indexcard + 1}}</view>
+        <view bindtap="Hidecard" data-indexcard="{{indexcard}}">
+          <view class="cardoff_font">规则</view>
+        </view>
+        <text class="cuIcon-roundclose text-gray" bindtap="Minuscard" data-indexcard="{{indexcard}}"></text>
+      </view>
+      <view hidden="{{card[indexcard].card_off!=1}}">
+        <view class="cu-form-group solid-bottom">
+          <view class="title">定位策略</view>
+          <picker bindchange="LocationPick" value="{{indexloc}}" range="{{locationPick}}" data-indexcard="{{indexcard}}">
+            <view class="picker">
+              {{card[indexcard].location.loc_method?card[indexcard].location.loc_method:'选择'}}
+            </view>
+          </picker>
+        </view>
+        <view hidden="{{card[indexcard].location.loc_method!='位置定位'}}">
+          <view class="cu-form-group">
+            <view class="font_1 flex-twice">X轴（离左边距离）:</view>
+            <form bindsubmit="onSubmit">
+              <input class="x_axis" placeholder="请输入" value="{{card[indexcard].location.loc_input1}}" placeholder-style="color:grey" 
+              bindinput="Xinput" data-indexcard="{{indexcard}}"></input>
+            </form>
+            <view wx:if="{{card[indexcard].location.x == 'true'}}">
+              <switch class="switch-loc grey radius sm" bindchange="X" data-indexcard="{{indexcard}}"
+              checked='true'></switch>
+            </view>
+            <view wx:if="{{card[indexcard].location.x == 'false'}}">
+              <switch class="switch-loc grey radius sm" bindchange="X" data-indexcard="{{indexcard}}"
+              checked=''></switch>
+            </view>
+            <view wx:if="{{card[indexcard].location.x == '0'}}">
+              <switch class="switch-loc grey radius sm" bindchange="X" data-indexcard="{{indexcard}}"
+              checked='true'></switch>
+            </view>
+          </view>
+          <view class="cu-form-group">
+            <view class="font_1 flex-twice">Y轴（离上边距离）:</view>
+            <form bindsubmit="onSubmit">
+              <input class="x_axis" placeholder="请输入" value="{{card[indexcard].location.loc_input2}}"
+              placeholder-style="color:grey" 
+              bindinput="Yinput" data-indexcard="{{indexcard}}"></input>
+            </form>
+            <view wx:if="{{card[indexcard].location.y == 'true'}}">
+              <switch class="switch-loc grey radius sm" bindchange="Y" data-indexcard="{{indexcard}}" 
+              checked='true'></switch>
+            </view>
+            <view wx:if="{{card[indexcard].location.y == 'false'}}">
+              <switch class="switch-loc grey radius sm" bindchange="Y" data-indexcard="{{indexcard}}" 
+              checked=''></switch>
+            </view>
+            <view wx:if="{{card[indexcard].location.y == '0'}}">
+              <switch class="switch-loc grey radius sm" bindchange="Y" data-indexcard="{{indexcard}}" 
+              checked='true'></switch>
+            </view>
+          </view>
+        </view>
+        <view hidden="{{card[indexcard].location.loc_method!='正则定位'}}">
+          <view class="cu-form-group">
+            <view class="font_2">关键字</view>
+            <text class="space_1" space="ensp"></text>
+            <form bindsubmit="onSubmit">
+              <input placeholder="请输入" placeholder-style="color:grey" value="{{card[indexcard].location.loc_input1}}"
+               bindinput="Keyinput1" data-indexcard="{{indexcard}}"></input>
+            </form>
+            <text space="ensp">第 </text>
+            <input value="{{card[indexcard].location.loc_input2}}"
+             bindinput="Keyinput2" data-indexcard="{{indexcard}}"></input>
+            <view>次出现</view>
+          </view>
+        </view>
+        <view hidden="{{card[indexcard].location.loc_method!='相对距离定位'}}">
+          <view class="cu-form-group solid-bottom solid-top">
+            <view class="font_3">相对文字框的序号</view>
+            <form bindsubmit="onSubmit">
+              <input placeholder="仅限小于{{indexcard + 1}}的数字" placeholder-style="color:grey" 
+              bindinput="Relativestart" data-indexcard="{{indexcard}}"
+              value="{{card[indexcard].location.loc_input1}}"></input>
+            </form>
+          </view>
+          <button class="preview-btn shadow" bindtap="Hide_pic"   hover-class="animation-shake">
+            <view class="font_7">确定</view>
+          </button>
+          <view class="cu-form-group">
+            <view class="font_4 flex-twice">向右距离</view>
+            <form bindsubmit="onSubmit">
+              <input placeholder="多少个字的宽" placeholder-style="color:grey" 
+              bindinput="Relativeinput1" data-indexcard="{{indexcard}}"
+              value="{{card[indexcard].location.loc_input2}}"></input>
+            </form>
+          </view>
+          <view class="cu-form-group">
+            <view class="font_4 flex-twice">向下距离</view>
+            <form bindsubmit="onSubmit">
+              <input placeholder="多少个字的长" placeholder-style="color:grey" 
+              bindinput="Relativeinput2" data-indexcard="{{indexcard}}"
+              value="{{card[indexcard].location.loc_input3}}"></input>
+            </form>
+          </view>
+        </view>
+        <view class="cu-form-group solid-bottom">
+          <view class="title">行列处理</view>
+          <view bindtap="Show_row_line" data-indexcard="{{indexcard}}">
+            <view class="row_line_btn">高级</view>
+          </view>
+        </view>
+        <view class="cu-form-group solid-bottom">
+          <view class="title">增删改策略</view>
+          <text class="space_2" space="ensp" >    ddd  </text>
+          <view bindtap="Show_change_font" data-indexcard="{{indexcard}}">
+            <view class="change_font_btn">添加</view>
+          </view>
+          <text class="space_2" space="ensp" >    ddd  </text>
+          <view bindtap="change_font_off" data-indexcard="{{indexcard}}">
+            <view class="change_font_btn">收起</view>
+          </view>
+        </view>
+        <view wx:for="{{card[indexcard].change_font}}" wx:for-index="indexfont">
+          <view hidden="{{card[indexcard].change_font_off!=1}}">
+            <view wx:if="{{card[indexcard].change_font[indexfont].type=='1'}}">
+              <view class="change_font_form cu-form-group">
+                <view class="cu-list menu-avatar" style="height: 100rpx; width: 692rpx;">
+                  <view class="cu-item {{card[indexcard].change_font[indexfont].move_font==1?'move-cur':''}}" 
+                   style="height: 100rpx; width: 693rpx;" 
+                   bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
+                   data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}">
+                    <text class="space_1" space="ensp"></text>
+                    <view class="addfont_1 flex-sub">增加字符</view>
+                    <text space="emsp">从 </text>
+                    <view class="flex-sub">
+                      <view wx:if="{{card[indexcard].change_font[indexfont].front_behind=='front'}}">
+                        <switch class="switch-front_behind orange radius sm" bindchange="Add_switch" 
+                        data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}" 
+                        checked="true"></switch>
+                      </view>
+                      <view wx:if="{{card[indexcard].change_font[indexfont].front_behind=='behind'}}">
+                        <switch class="switch-front_behind orange radius sm" bindchange="Add_switch" 
+                        data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}" 
+                        checked=""></switch>
+                      </view>
+                      <view wx:if="{{card[indexcard].change_font[indexfont].front_behind=='0'}}">
+                        <switch class="switch-front_behind orange radius sm" bindchange="Add_switch" 
+                        data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}" 
+                        checked="true"></switch>
+                      </view>
+                    </view>
+                    <text space="emsp">添加 </text>
+                    <view class="flex-twice">
+                      <form bindsubmit="onSubmit">
+                        <input placeholder="请输入" placeholder-style="color:grey" bindinput="Add_input1"
+                         data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}" 
+                         value="{{card[indexcard].change_font[indexfont].change_font_input1}}"></input>
+                      </form>
+                    </view>
+                    <view class="move">
+                      <view class="bg-red" bindtap="Minus_font" 
+                       data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}">删除</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:elif="{{card[indexcard].change_font[indexfont].type=='2'}}">
+              <view class="change_font_form cu-form-group">
+                <view class="cu-list menu-avatar" style="height: 100rpx; width: 692rpx;">
+                  <view class="cu-item {{card[indexcard].change_font[indexfont].move_font==1?'move-cur':''}}" 
+                  style="height: 100rpx; width: 693rpx;" 
+                  bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
+                  data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}">
+                    <text class="space_1" space="ensp"></text>
+                    <view class="delfont_1 flex-sub">删除字符</view>
+                    <view class="flex-twice del_picker">
+                      <picker bindchange="Del_pick" value="{{indexdel}}" range="{{del_pick}}" 
+                      data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}">
+                        <view class="picker2">
+                          {{card[indexcard].change_font[indexfont].delete_font?
+                            del_pick[card[indexcard].change_font[indexfont].delete_font]:"无"}}
+                        </view>
+                      </picker>
+                    </view>
+                    <view class="flex-twice">
+                      <form bindsubmit="onSubmit">
+                        <input placeholder="请输入" placeholder-style="color:grey" bindinput="Del_input1"
+                        data-indexcard="{{indexcard}}" data-indexfont="{{indexfont}}" 
+                        value="{{card[indexcard].change_font[indexfont].change_font_input1}}"></input>
+                      </form>
+                    </view>
+                    <view class="move">
+                      <view class="bg-red" bindtap="Minus_font" 
+                      data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}">删除</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:elif="{{card[indexcard].change_font[indexfont].type=='3'}}">
+              <view class="change_font_form cu-form-group">
+                <view class="cu-list menu-avatar" style="height: 100rpx; width: 692rpx;">
+                  <view class="cu-item {{card[indexcard].change_font[indexfont].move_font==1?'move-cur':''}}" 
+                  style="height: 100rpx; width: 693rpx;" 
+                  bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
+                  data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}">
+                    <text class="space_1" space="ensp"></text>
+                    <view class="delfont_1 ">替换字符</view>
+                    <text space="emsp"> 将 </text>
+                    <view class="flex-twice">
+                      <form bindsubmit="onSubmit">
+                        <input placeholder="请输入" placeholder-style="color:grey" bindinput="Rep_input1"
+                         data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}"
+                         value="{{card[indexcard].change_font[indexfont].change_font_input1}}"></input>
+                      </form>
+                    </view>
+                    <text space="emsp">替换为 </text>
+                    <view class="flex-twice">
+                      <form bindsubmit="onSubmit">
+                        <input placeholder="请输入" placeholder-style="color:grey" bindinput="Rep_input2"
+                         data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}"
+                         value="{{card[indexcard].change_font[indexfont].change_font_input2}}"></input>
+                      </form>
+                    </view>
+                    <view class="move">
+                      <view class="bg-red" bindtap="Minus_font" 
+                       data-indexfont="{{indexfont}}" data-indexcard="{{indexcard}}">删除</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:for="{{card}}" wx:for-index="index_row_line" hidden="{{index_row_line!=nowcard}}">
+  <view class="cu-modal {{row_line_module==1?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">请选择拼接的规则</view>
+        <view class="action" bindtap="Hide_row_line">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="cu-form-group">
+        <view class="row_line_1">多行合并</view>
+        <view class="flex-sub">
+          <view wx:if="{{card[nowcard].row_line.rowSwitch == 'true'}}">
+            <switch class="switch-row grey radius sm" bindchange="Row_switch" 
+            data-nowcard="{{nowcard}}" checked='true'></switch>
+          </view>
+          <view wx:if="{{card[nowcard].row_line.rowSwitch == 'false'}}">
+            <switch class="switch-row grey radius sm" bindchange="Row_switch" 
+            data-nowcard="{{nowcard}}" checked=''></switch>
+          </view>
+          <view wx:if="{{card[nowcard].row_line.rowSwitch == '0'}}">
+            <switch class="switch-row grey radius sm" bindchange="Row_switch" 
+            data-nowcard="{{nowcard}}" checked='true'></switch>
+          </view>
+        </view>
+      </view>
+      <view hidden="{{card[nowcard].row_line.rowSwitch!='false'}}">
+        <view class="cu-form-group">
+          <view class="title">拼接符</view>
+          <picker bindchange="Row_pick" value="{{indexrow}}" range="{{row_line_pick}}" data-nowcard="{{nowcard}}">
+            <view class="picker">
+              {{card[nowcard].row_line.rowCharacter?card[nowcard].row_line.rowCharacter:'选择'}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group">
+          <text space="nbsp"> 从 </text>
+          <view class="flex-twice">
+            <form bindsubmit="onSubmit">
+              <input placeholder="多少个字的宽" placeholder-style="color:grey" bindinput="Row_input1" 
+               data-nowcard="{{nowcard}}" value="{{card[nowcard].row_line.row_input1}}"></input>
+            </form>
+          </view>
+          <text space="nbsp">起， 到 </text>
+          <view class="flex-twice">
+            <form bindsubmit="onSubmit">
+              <input placeholder="多少个字的宽" placeholder-style="color:grey" bindinput="Row_input2" 
+              data-nowcard="{{nowcard}}" value="{{card[nowcard].row_line.row_input2}}"></input>
+            </form>
+          </view>
+          <text space="nbsp">合并</text>
+        </view>
+      </view>
+      <view class="cu-form-group">
+        <view class="row_line_1">多列合并</view>
+        <view class="flex-sub">
+          <view wx:if="{{card[nowcard].row_line.line_switch == 'true'}}">
+            <switch class="switch-line grey radius sm" bindchange="Line_switch" 
+            data-nowcard="{{nowcard}}" checked='true'></switch>
+          </view>
+          <view wx:if="{{card[nowcard].row_line.line_switch == 'false'}}">
+            <switch class="switch-line grey radius sm" bindchange="Line_switch" 
+            data-nowcard="{{nowcard}}" checked=''></switch>
+          </view>
+          <view wx:if="{{card[nowcard].row_line.line_switch == '0'}}">
+            <switch class="switch-line grey radius sm" bindchange="Line_switch" 
+            data-nowcard="{{nowcard}}" checked='true'></switch>
+          </view>
+        </view>
+      </view>
+      <view hidden="{{card[nowcard].row_line.line_switch!='false'}}">
+        <view class="cu-form-group">
+          <view class="title">拼接符</view>
+          <picker bindchange="Linepick" value="{{indexline}}" range="{{row_line_pick}}" data-nowcard="{{nowcard}}">
+            <view class="picker">
+              {{card[nowcard].row_line.line_character?card[nowcard].row_line.line_character:'选择'}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group">
+          <text space="nbsp"> 从 </text>
+          <view class="flex-twice">
+            <form bindsubmit="onSubmit">
+              <input placeholder="多少个字的长" placeholder-style="color:grey" bindinput="Line_input1" 
+               data-nowcard="{{nowcard}}" value="{{card[nowcard].row_line.line_input1}}"></input>
+            </form>
+          </view>
+          <text space="nbsp">起， 到 </text>
+          <view class="flex-twice">
+            <form bindsubmit="onSubmit">
+              <input placeholder="多少个字的长" placeholder-style="color:grey" bindinput="Line_input2" 
+               data-nowcard="{{nowcard}}" value="{{card[nowcard].row_line.line_input2}}"></input>
+            </form>
+          </view>
+          <text space="nbsp">合并</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{change_font_module==1?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="action" bindtap="Hide_change_font">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="change_font_1 padding-xl cu-dialog" catchtap>
+      <view class="change_font_module" bindtap="Add_font">
+        增加字符
+      </view>
+      <view class="change_font_module" bindtap="Delete_font">
+        删除字符
+      </view>
+      <view class="change_font_module" bindtap="Replace_font">
+        替换字符
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{strategy_module==1?'show':''}}">
+  <view class="cu-dialog">
+    <view class="strategy_title cu-bar justify-end">
+      <view class="content">策略组信息</view>
+      <view class="action" bindtap="HideStrategy">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="interval-strategy"></view>
+    <view class="strategy_1 cu-form-group">
+      <view class="font_5">策略组的名称</view>
+      <text class="space_1" space="ensp"></text>
+      <input placeholder="请输入" placeholder-style="color:grey" bindinput="Strategyinput"></input>
+    </view>
+    <view class="interval_img"></view>
+    <button class="strategy_btn shadow" bindtap="Strategy" hover-class="animation-shake">
+      <view class="font_6">确定</view>
+    </button>
+    <view class="interval-strategy"></view>
+  </view>
+</view>
+<view class="interval_img"></view>
+<view class="interval_img"></view>
+<view class="addcard_icon cu-form-group">
+  <text class="space_3" space="ensp" >    ddd  </text>
+  <text class="space_3" space="ensp" >    ddd  </text>
+  <button class="upload-btn shadow" bindtap="Uploadstrategy" hover-class="animation-shake">
+    <view class="font_8">上传</view>
+  </button>
+  <button class="save-btn shadow" bindtap="Savestrategy" hover-class="animation-shake">
+    <view class="font_7">保存方案</view>
+  </button>
+</view>
+<view class="interval"></view>
+<view class="interval"></view>
+<view>
+  <button class="start-btn shadow" bindtap="Clear" hover-class="animation-shake">
+    <view class="font_7">清除策略</view>
+  </button>
+</view>
+<view class="interval_2"></view>
+<view class="addcard_icon cu-form-group">
+  <text class="space_3" space="ensp" >     ddd    </text>
+  <button class="start-btn shadow" bindtap="Download_result" hover-class="animation-shake">
+    <view class="font_7">结果</view>
+  </button>
+  <button class="start-btn shadow" bindtap="Download_result" hover-class="animation-shake">
+    <view class="font_7">保存结果</view>
+  </button>
+</view>
+<view class="cu-bar bg-white margin-top">
+
+</view>
+<view class="interval"></view>
+<view class="interval"></view>
+
+<view class="cu-modal {{guidemodule==1?'show':''}}" bindtap="Hide_guide">
+  <view class="cu-dialog">
+    
+    <image src="/imageGuide/1.2.png" mode="widthFix" style="width: 640rpx;"/>
+  </view>
+</view>
+
+
+<div style="position:relative; z-index:-1">
+  <canvas catchtouchstart="touchstartCallback" catchtouchmove="touchmoveCallback" catchtouchend="touchendCallback"  id="myCanvas" type="2d" style="border: 1px; width: 100%; height: 1120rpx;" class="canvas_1"></canvas>
+</div>
+
+<view class="interval"></view>
+<view class="interval"></view>
+
