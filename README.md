@@ -13,7 +13,7 @@
    5.2.1 Sign in
    5.2.2 Historical strategies and orders viewing and sharing and other's sharing viewing
 6. Tech Stack
-
+--------------------------------------------------------------------------------------------------
 1. Core Features
 The system is designed for bulk character recognition, dynamically adapting its recognition strategy to accurately identify desired characters in images.
 
@@ -21,10 +21,10 @@ The system is designed for bulk character recognition, dynamically adapting its 
 The system employs multiple strategies, allowing it to handle a wider range of character recognition scenarios compared to using a single approach.
 
 3. UI Showcase
-
+View attached documents.
 
 4. Example Use Cases
-
+View attached documents.
 
 5. User Guide
 5.1 ‘Home’ page
