@@ -21,10 +21,10 @@ The system is designed for bulk character recognition, dynamically adapting its 
 The system employs multiple strategies, allowing it to handle a wider range of character recognition scenarios compared to using a single approach.
 
 3. UI Showcase  
-View attached documents.
+View attached documents. Image number 1~13.
 
 4. Example Use Cases  
-View attached documents.
+View attached documents. Image number 14~30.
 
 5. User Guide
 
