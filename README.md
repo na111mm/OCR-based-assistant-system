@@ -27,6 +27,7 @@ View attached documents.
 View attached documents.
 
 5. User Guide
+
 5.1 ‘Home’ page
 
 5.1.1 Upload images
